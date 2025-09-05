@@ -18,6 +18,11 @@ class PageController extends Controller
 
     public function show(Request $request, $uri = '/')
     {
+        // Ensure URI starts with / for Statamic
+        if ($uri !== '/' && !str_starts_with($uri, '/')) {
+            $uri = '/' . $uri;
+        }
+        
         // Find entry by URI
         $page = Entry::findByUri($uri);
 

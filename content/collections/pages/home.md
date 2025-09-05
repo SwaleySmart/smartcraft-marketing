@@ -7,7 +7,7 @@ blocks:
     id: PyK9r9Nw
     type: hero
     enabled: true
-    headline: 'Welcome to smartcraft..'
+    headline: 'Welcome to smartcraft.'
     highlight_text: 'The AI-Native Anti-Agency'
     subheadline: 'Enterprise-grade digital systems at a fraction of the cost. Built on proven technology, powered by AI, and designed to grow with you—without the compromises of agencies.'
     cta_text: 'Get Started'
@@ -33,7 +33,7 @@ blocks:
     type: intro
     enabled: true
     title: 'The Anti-Agency'
-    subtitle: 'AI-native studio delivering enterprise results at agency prices'
+    subtitle: 'The end of bloated agencies. One AI-powered studio delivering enterprise-grade websites, marketing, and analytics—leaner, faster, and smarter than the old way.'
     content:
       -
         type: paragraph
@@ -413,5 +413,5 @@ blocks:
     cta_button_url: /contact
 robots: 'index, follow'
 updated_by: 9b4214e7-c09d-4de5-a908-64e55d2b24d8
-updated_at: 1757102690
+updated_at: 1757102878
 ---
