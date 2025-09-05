@@ -2,3 +2,7 @@ name: Swaley
 super: true
 id: 9b4214e7-c09d-4de5-a908-64e55d2b24d8
 password_hash: $2y$12$5qP/vekfzAbTADIQDkpNZ.cqcwDCTjeOa3bbRj0s5mkN.BOAhkO9u
+preferences:
+  collections:
+    pages:
+      after_save: continue_editing

@@ -5,9 +5,11 @@
       <div class="cyber-grid-hero opacity-20"></div>
     </div>
     
-    <!-- Matrix Rain Effect -->
-    <div class="absolute inset-0 overflow-hidden opacity-30">
+    <!-- Enhanced Matrix Rain Effect -->
+    <div class="absolute inset-0 overflow-hidden opacity-40">
       <div class="matrix-rain"></div>
+      <div class="matrix-rain-2"></div>
+      <div class="matrix-rain-3"></div>
     </div>
     
     <!-- Futuristic Background Elements -->
@@ -20,17 +22,33 @@
       <div class="absolute top-1/4 right-1/4 w-64 h-64 border border-cyan-400/30 rounded-full animate-spin-slow" />
       <div class="absolute bottom-1/4 left-1/4 w-48 h-48 border-2 border-blue-500/20 border-dashed rounded-full animate-spin-reverse" />
       
-      <!-- Floating Data Nodes -->
+      <!-- Enhanced Floating Data Nodes -->
       <div class="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-float opacity-80" />
       <div class="absolute top-40 right-32 w-1 h-1 bg-blue-400 rounded-full animate-float animation-delay-1s" />
       <div class="absolute bottom-32 left-1/3 w-3 h-3 bg-purple-400 rounded-full animate-float animation-delay-2s" />
       <div class="absolute bottom-20 right-20 w-2 h-2 bg-pink-400 rounded-full animate-float animation-delay-3s" />
+      <div class="absolute top-1/3 left-10 w-1.5 h-1.5 bg-green-400 rounded-full animate-float animation-delay-4s" />
+      <div class="absolute top-1/2 right-10 w-2.5 h-2.5 bg-yellow-400 rounded-full animate-float animation-delay-1.5s" />
+      <div class="absolute bottom-1/3 left-1/4 w-1 h-1 bg-cyan-300 rounded-full animate-float animation-delay-5s" />
+      <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-blue-300 rounded-full animate-float animation-delay-2.5s" />
+      <div class="absolute top-16 left-1/2 w-1 h-1 bg-purple-300 rounded-full animate-float animation-delay-3.5s" />
+      <div class="absolute bottom-16 left-2/3 w-1.5 h-1.5 bg-pink-300 rounded-full animate-float animation-delay-4.5s" />
       
-      <!-- Scanning Lines -->
+      <!-- Floating Geometric Shapes -->
+      <div class="absolute top-1/4 left-1/5 w-3 h-3 border border-cyan-400/50 rotate-45 animate-float animation-delay-1s" />
+      <div class="absolute bottom-1/4 right-1/5 w-2 h-2 border border-blue-400/50 animate-float animation-delay-3s" />
+      <div class="absolute top-2/3 left-3/4 w-4 h-4 border border-purple-400/50 rounded-full animate-float animation-delay-2s" />
+      <div class="absolute bottom-2/3 right-3/4 w-2 h-2 border border-pink-400/50 rotate-45 animate-float animation-delay-4s" />
+      
+      <!-- Enhanced Scanning Lines -->
       <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-scan-horizontal" />
       <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-scan-horizontal animation-delay-2s" />
+      <div class="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-scan-horizontal animation-delay-4s" />
+      <div class="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent animate-scan-horizontal animation-delay-6s" />
       <div class="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-purple-400 to-transparent animate-scan-vertical" />
       <div class="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-pink-400 to-transparent animate-scan-vertical animation-delay-1s" />
+      <div class="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-400 to-transparent animate-scan-vertical animation-delay-3s" />
+      <div class="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent animate-scan-vertical animation-delay-5s" />
     </div>
 
     <!-- Content Container -->
@@ -180,19 +198,23 @@
 
       </div>
 
-      <!-- Futuristic Scroll Indicator -->
+      <!-- Enhanced Futuristic Scroll Indicator -->
       <div 
         v-if="showScrollIndicator"
         class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         ref="scrollIndicatorRef"
       >
-        <div class="relative group cursor-pointer">
-          <!-- Outer Ring -->
-          <div class="w-12 h-12 border-2 border-cyan-400/30 rounded-full group-hover:border-cyan-400/60 transition-colors duration-300 animate-pulse">
+        <div class="relative group cursor-pointer scroll-indicator-container">
+          <!-- Outer Pulsing Ring -->
+          <div class="absolute w-16 h-16 border-2 border-cyan-400/20 rounded-full animate-ping"></div>
+          <div class="absolute w-20 h-20 border border-cyan-400/10 rounded-full animate-pulse animation-delay-1s"></div>
+          
+          <!-- Main Ring -->
+          <div class="relative w-12 h-12 border-2 border-cyan-400/60 rounded-full group-hover:border-cyan-400 transition-all duration-300 bg-black/30 backdrop-blur-sm">
             <!-- Inner Ring -->
-            <div class="w-8 h-8 border border-cyan-400/50 rounded-full m-1.5 group-hover:border-cyan-400 transition-colors duration-300">
-              <!-- Center Dot -->
-              <div class="w-2 h-2 bg-cyan-400 rounded-full m-2.5 group-hover:animate-pulse"></div>
+            <div class="w-8 h-8 border border-cyan-400/80 rounded-full m-1.5 group-hover:border-cyan-400 transition-colors duration-300 animate-pulse">
+              <!-- Glowing Center Dot -->
+              <div class="w-2 h-2 bg-cyan-400 rounded-full m-2.5 animate-pulse shadow-glow-small"></div>
             </div>
           </div>
           
@@ -200,13 +222,21 @@
           <div class="absolute inset-0 flex items-center justify-center">
             <Icon 
               name="chevron-down" 
-              size="md" 
-              class="text-cyan-400/60 group-hover:text-cyan-400 transition-colors duration-300 animate-bounce" 
+              size="lg" 
+              class="text-cyan-400 group-hover:text-white transition-colors duration-300 animate-bounce drop-shadow-glow" 
             />
           </div>
           
-          <!-- Scan Line -->
+          <!-- Multiple Scan Lines -->
           <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-scan-horizontal"></div>
+          <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-scan-horizontal animation-delay-2s"></div>
+          <div class="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-purple-400 to-transparent animate-scan-vertical"></div>
+          <div class="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-pink-400 to-transparent animate-scan-vertical animation-delay-1s"></div>
+          
+          <!-- Text Label -->
+          <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-cyan-400/60 font-mono uppercase tracking-wider whitespace-nowrap">
+            Scroll Down
+          </div>
         </div>
       </div>
     </div>
@@ -416,18 +446,47 @@ onMounted(() => {
       )
     }
     
-    // Glitch effect for highlight text
+    // Enhanced glitch effect for highlight text
     const glitchElements = document.querySelectorAll('.hero-glitch')
-    glitchElements.forEach(element => {
+    glitchElements.forEach((element, index) => {
+      // Random glitch animation
       gsap.to(element, {
         opacity: 1,
+        x: gsap.utils.random(-3, 3),
+        y: gsap.utils.random(-2, 2),
         duration: 0.1,
         repeat: -1,
         yoyo: true,
-        repeatDelay: gsap.utils.random(2, 5),
+        repeatDelay: gsap.utils.random(3, 8),
+        ease: 'power2.inOut'
+      })
+      
+      // Color shift effect
+      gsap.to(element, {
+        filter: 'hue-rotate(180deg)',
+        duration: 0.2,
+        repeat: -1,
+        yoyo: true,
+        repeatDelay: gsap.utils.random(4, 10),
         ease: 'power2.inOut'
       })
     })
+    
+    // Add periodic intense glitch to main highlight text
+    const mainHighlight = document.querySelector('.hero-highlight-text')
+    if (mainHighlight) {
+      gsap.to(mainHighlight, {
+        x: gsap.utils.random(-5, 5),
+        duration: 0.05,
+        repeat: 3,
+        yoyo: true,
+        repeatDelay: gsap.utils.random(5, 12),
+        ease: 'power2.inOut',
+        onComplete: function() {
+          gsap.set(mainHighlight, { x: 0 })
+        }
+      })
+    }
     
     // Parallax effect on scroll
     ScrollTrigger.create({
@@ -482,17 +541,62 @@ onMounted(() => {
   100% { transform: translate(100px, 100px); }
 }
 
-/* Matrix Rain Effect */
+/* Enhanced Matrix Rain Effect */
 .matrix-rain {
   width: 100%;
   height: 100%;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 98px,
-    rgba(0, 255, 255, 0.03) 100px
-  );
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 255, 255, 0.1) 21px,
+      rgba(0, 255, 255, 0.1) 22px,
+      transparent 23px,
+      transparent 40px,
+      rgba(59, 130, 246, 0.08) 41px,
+      rgba(59, 130, 246, 0.08) 42px,
+      transparent 43px
+    );
   animation: matrix-fall 8s linear infinite;
+}
+
+.matrix-rain-2 {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 35px,
+      rgba(168, 85, 247, 0.06) 36px,
+      rgba(168, 85, 247, 0.06) 37px,
+      transparent 38px,
+      transparent 70px,
+      rgba(236, 72, 153, 0.05) 71px,
+      rgba(236, 72, 153, 0.05) 72px,
+      transparent 73px
+    );
+  animation: matrix-fall-2 12s linear infinite;
+}
+
+.matrix-rain-3 {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 55px,
+      rgba(34, 197, 94, 0.04) 56px,
+      rgba(34, 197, 94, 0.04) 57px,
+      transparent 58px,
+      transparent 90px,
+      rgba(251, 191, 36, 0.03) 91px,
+      rgba(251, 191, 36, 0.03) 92px,
+      transparent 93px
+    );
+  animation: matrix-fall-3 15s linear infinite;
 }
 
 @keyframes matrix-fall {
@@ -500,10 +604,27 @@ onMounted(() => {
   100% { transform: translateY(100%); }
 }
 
+@keyframes matrix-fall-2 {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes matrix-fall-3 {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(150%); }
+}
+
 /* Futuristic Animations */
 .animation-delay-1s { animation-delay: 1s; }
+.animation-delay-1\.5s { animation-delay: 1.5s; }
 .animation-delay-2s { animation-delay: 2s; }
+.animation-delay-2\.5s { animation-delay: 2.5s; }
 .animation-delay-3s { animation-delay: 3s; }
+.animation-delay-3\.5s { animation-delay: 3.5s; }
+.animation-delay-4s { animation-delay: 4s; }
+.animation-delay-4\.5s { animation-delay: 4.5s; }
+.animation-delay-5s { animation-delay: 5s; }
+.animation-delay-6s { animation-delay: 6s; }
 
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
@@ -609,6 +730,67 @@ onMounted(() => {
 .trust-indicator {
   backdrop-filter: blur(5px);
   box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+/* Scroll Indicator Effects */
+.scroll-indicator-container {
+  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.6));
+}
+
+.shadow-glow-small {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* Enhanced Glitch Effects */
+.hero-glitch {
+  animation: glitch-intense 0.3s linear infinite;
+}
+
+@keyframes glitch-intense {
+  0%, 100% { 
+    transform: translateX(0);
+    filter: hue-rotate(0deg);
+  }
+  10% { 
+    transform: translateX(-3px) translateY(1px);
+    filter: hue-rotate(90deg);
+  }
+  20% { 
+    transform: translateX(3px) translateY(-1px);
+    filter: hue-rotate(180deg);
+  }
+  30% { 
+    transform: translateX(-2px) translateY(2px);
+    filter: hue-rotate(270deg);
+  }
+  40% { 
+    transform: translateX(2px) translateY(-2px);
+    filter: hue-rotate(360deg);
+  }
+  50% { 
+    transform: translateX(-4px) translateY(1px);
+    filter: hue-rotate(45deg);
+  }
+  60% { 
+    transform: translateX(4px) translateY(-1px);
+    filter: hue-rotate(135deg);
+  }
+  70% { 
+    transform: translateX(-1px) translateY(3px);
+    filter: hue-rotate(225deg);
+  }
+  80% { 
+    transform: translateX(1px) translateY(-3px);
+    filter: hue-rotate(315deg);
+  }
+  90% { 
+    transform: translateX(-5px) translateY(0px);
+    filter: hue-rotate(180deg);
+  }
 }
 
 /* Responsive adjustments */

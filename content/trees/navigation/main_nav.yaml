@@ -29,14 +29,6 @@ tree:
     title: Packages
     url: /packages
   -
-    id: process
-    title: Process
-    url: /process
-  -
-    id: case_studies
-    title: 'Case Studies'
-    url: /case-studies
-  -
     id: insights
     title: Insights
     url: /insights
@@ -44,7 +36,12 @@ tree:
     id: about
     title: About
     url: /about
-  -
-    id: contact
-    title: Contact
-    url: /contact
+    children:
+      -
+        id: case_studies
+        title: 'Case Studies'
+        url: /case-studies
+      -
+        id: process
+        title: Process
+        url: /process

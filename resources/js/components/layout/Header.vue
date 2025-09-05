@@ -11,7 +11,7 @@
       <div class="absolute top-0 right-1/4 w-96 h-32 bg-gradient-to-l from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
     </div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12">
       <div class="flex items-center justify-between h-16 lg:h-20">
         <!-- Logo -->
         <div class="flex items-center" ref="logoRef">
@@ -39,15 +39,12 @@
               <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:from-white group-hover:via-cyan-300 group-hover:to-blue-300 transition-all duration-300">
                 {{ siteName }}
               </span>
-              <span class="text-xs lg:text-sm text-cyan-400/80 font-mono tracking-[0.2em] uppercase">
-                {{ tagline }}
-              </span>
             </div>
           </Link>
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center space-x-8" ref="navRef">
+        <nav class="hidden lg:flex items-center space-x-4 xl:space-x-8" ref="navRef">
           <template v-for="item in navigation" :key="item.id">
             <!-- Dropdown Menu -->
             <div 
@@ -122,17 +119,17 @@
         </nav>
 
         <!-- CTA Button & Mobile Menu -->
-        <div class="flex items-center space-x-4" ref="ctaRef">
+        <div class="flex items-center space-x-3 lg:space-x-4" ref="ctaRef">
           <!-- Futuristic CTA Button -->
           <div v-if="ctaButton?.enabled" class="hidden md:block relative">
             <!-- Background Glow -->
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl opacity-75 blur-sm animate-pulse"></div>
-            <BaseButton
-              :href="ctaButton.url"
-              :variant="ctaButton.style || 'primary'"
-              size="md"
-              class="relative bg-black border-2 border-cyan-400 text-cyan-400 hover:text-black hover:bg-cyan-400 transition-all duration-300 font-mono tracking-wider uppercase text-sm cyberpunk-btn"
-            >
+              <BaseButton
+                :href="ctaButton.url"
+                :variant="ctaButton.style || 'primary'"
+                size="sm"
+                class="relative bg-black border-2 border-cyan-400 text-cyan-400 hover:text-black hover:bg-cyan-400 transition-all duration-300 font-mono tracking-wider uppercase text-xs lg:text-sm cyberpunk-btn px-4 py-2 lg:px-6 lg:py-3"
+              >
               <span class="relative z-10">{{ ctaButton.text }}</span>
               <!-- Corner brackets -->
               <span class="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-cyan-400"></span>
@@ -169,14 +166,14 @@
       ]"
       style="box-shadow: 0 25px 50px -12px rgba(6, 182, 212, 0.25);"
     >
-      <div class="container mx-auto px-4 py-6">
+      <div class="px-4 sm:px-6 md:px-8 lg:px-12 py-6">
         <nav class="space-y-1">
           <template v-for="item in navigation" :key="`mobile-${item.id}`">
             <!-- Menu Item with Children -->
             <div v-if="item.children && item.children.length > 0">
               <button
                 @click="toggleMobileDropdown(item.id)"
-                class="flex items-center justify-between w-full p-3 text-left font-medium text-secondary-900 dark:text-white hover:bg-secondary-50 dark:hover:bg-secondary-800 rounded-lg transition-colors duration-150"
+                class="flex items-center justify-between w-full p-3 text-left font-medium text-white hover:bg-cyan-400/10 hover:text-cyan-400 rounded-lg transition-colors duration-150"
               >
                 <span>{{ item.title }}</span>
                 <Icon 
@@ -201,7 +198,7 @@
                   :key="child.id"
                   :href="child.url"
                   @click="closeMobileMenu"
-                  class="flex items-center space-x-3 p-3 text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-white hover:bg-secondary-50 dark:hover:bg-secondary-800 rounded-lg transition-colors duration-150"
+                  class="flex items-center space-x-3 p-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10 rounded-lg transition-colors duration-150"
                 >
                   <Icon :name="getServiceIcon(child.id)" size="xs" />
                   <span>{{ child.title }}</span>
@@ -217,8 +214,8 @@
               :class="[
                 'block p-3 font-medium rounded-lg transition-colors duration-150',
                 isActiveLink(item.url) 
-                  ? 'text-primary-500 bg-primary-50 dark:bg-primary-900/20' 
-                  : 'text-secondary-900 dark:text-white hover:bg-secondary-50 dark:hover:bg-secondary-800'
+                  ? 'text-cyan-400 bg-cyan-400/20' 
+                  : 'text-white hover:text-cyan-400 hover:bg-cyan-400/10'
               ]"
             >
               {{ item.title }}
@@ -226,13 +223,14 @@
           </template>
 
           <!-- Mobile CTA -->
-          <div v-if="ctaButton?.enabled" class="pt-4 border-t border-secondary-100 dark:border-secondary-800">
+          <div v-if="ctaButton?.enabled" class="pt-4 border-t border-cyan-400/30">
             <BaseButton
               :href="ctaButton.url"
               :variant="ctaButton.style || 'primary'"
               size="lg"
               block
               @click="closeMobileMenu"
+              class="bg-black border-2 border-cyan-400 text-cyan-400 hover:text-black hover:bg-cyan-400 font-mono tracking-wider uppercase"
             >
               {{ ctaButton.text }}
             </BaseButton>
@@ -295,23 +293,30 @@ const mobileMenuOpen = ref(false)
 const showDropdown = ref(null)
 const mobileDropdowns = ref([])
 const isScrolled = ref(false)
+const isHeaderVisible = ref(true)
+const lastScrollY = ref(0)
+const scrollDirection = ref('up')
+const isScrolling = ref(false)
 
 // Computed
 const homeUrl = computed(() => '/')
 
 const headerClasses = computed(() => [
-  'relative z-50 transition-all duration-500',
+  'z-50 transition-all duration-500 ease-out',
   {
     'fixed top-0 inset-x-0': props.stickyHeader,
+    'relative': !props.stickyHeader,
     'bg-black/90 backdrop-blur-xl border-b border-cyan-400/30': 
       props.stickyHeader && (isScrolled.value || !props.transparentHeader),
     'bg-transparent': props.transparentHeader && !isScrolled.value,
-    'bg-black border-b border-cyan-400/30': !props.transparentHeader
+    'bg-black border-b border-cyan-400/30': !props.transparentHeader,
+    'transform -translate-y-full': props.stickyHeader && !isHeaderVisible.value,
+    'transform translate-y-0': props.stickyHeader && isHeaderVisible.value
   }
 ])
 
 const navLinkClasses = computed(() => [
-  'text-gray-300 hover:text-cyan-400 font-medium font-mono transition-all duration-300 relative group tracking-wide uppercase text-sm',
+  'text-gray-300 hover:text-cyan-400 font-medium font-mono transition-all duration-300 relative group tracking-wide uppercase text-xs lg:text-sm',
   'after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:bg-gradient-to-r after:from-cyan-400 after:to-blue-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300',
   'before:absolute before:inset-0 before:bg-cyan-400/5 before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:rounded-md before:-z-10'
 ])
@@ -343,7 +348,49 @@ const toggleMobileDropdown = (itemId) => {
 }
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20
+  const currentScrollY = window.scrollY
+  
+  // Update scrolled state for styling
+  isScrolled.value = currentScrollY > 20
+  
+  // Determine scroll direction
+  if (currentScrollY > lastScrollY.value) {
+    scrollDirection.value = 'down'
+  } else {
+    scrollDirection.value = 'up'
+  }
+  
+  // Show/hide header logic
+  if (currentScrollY <= 100) {
+    // Always show header at the top
+    isHeaderVisible.value = true
+  } else if (scrollDirection.value === 'down' && currentScrollY > lastScrollY.value + 10) {
+    // Hide header when scrolling down (with threshold to prevent jitter)
+    isHeaderVisible.value = false
+  } else if (scrollDirection.value === 'up' && currentScrollY < lastScrollY.value - 10) {
+    // Show header when scrolling up (with threshold to prevent jitter)
+    isHeaderVisible.value = true
+  }
+  
+  // Update last scroll position
+  lastScrollY.value = currentScrollY
+  
+  // Use GSAP for smoother header animation
+  if (props.stickyHeader && headerRef.value) {
+    if (isHeaderVisible.value) {
+      gsap.to(headerRef.value, {
+        y: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      })
+    } else {
+      gsap.to(headerRef.value, {
+        y: -100,
+        duration: 0.3,
+        ease: 'power2.in'
+      })
+    }
+  }
 }
 
 const getServiceIcon = (serviceId) => {
@@ -374,20 +421,34 @@ const isActiveLink = (url) => {
   return page.url.startsWith(url)
 }
 
+// Throttled scroll handler for better performance
+const throttledScrollHandler = () => {
+  if (!isScrolling.value) {
+    requestAnimationFrame(() => {
+      handleScroll()
+      isScrolling.value = false
+    })
+    isScrolling.value = true
+  }
+}
+
 // Lifecycle
 onMounted(() => {
   if (props.stickyHeader) {
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true })
     handleScroll() // Check initial state
   }
   
   // GSAP Animations
   nextTick(() => {
-    // Header entrance animation
-    gsap.fromTo(headerRef.value, 
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
-    )
+    // Header entrance animation (only on initial load)
+    if (headerRef.value) {
+      gsap.set(headerRef.value, { y: 0 }) // Ensure starting position
+      gsap.fromTo(headerRef.value, 
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      )
+    }
     
     // Logo animation
     gsap.fromTo(logoRef.value?.children[0], 
@@ -452,7 +513,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (props.stickyHeader) {
-    window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('scroll', throttledScrollHandler)
   }
   document.body.style.overflow = ''
 })
