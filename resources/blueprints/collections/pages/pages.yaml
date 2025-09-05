@@ -96,6 +96,169 @@ tabs:
                           minimal: 'Minimal'
                           bold: 'Bold'
                         default: 'standard'
+                intro:
+                  display: 'About/Intro Section'
+                  icon: identification
+                  instructions: 'Introduce Smartcraft - who we are, what makes us unique, our anti-agency positioning'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'The Anti-Agency'
+                        validate:
+                          - required
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        instructions: 'Brief tagline or summary'
+                        rows: 2
+                        default: 'AI-native studio delivering enterprise results at agency prices'
+                    -
+                      handle: content
+                      field:
+                        type: bard
+                        display: 'Main Content'
+                        instructions: 'Rich text content explaining our unique positioning, technology stack, and approach'
+                        buttons:
+                          - bold
+                          - italic
+                          - unorderedlist
+                          - orderedlist
+                          - removeformat
+                          - quote
+                          - link
+                          - image
+                          - table
+                        validate:
+                          - required
+                    -
+                      handle: features
+                      field:
+                        type: replicator
+                        display: 'Key Features/USPs'
+                        instructions: 'Highlight unique selling points and key differentiators'
+                        sets:
+                          feature:
+                            display: 'Feature'
+                            fields:
+                              -
+                                handle: icon
+                                field:
+                                  type: text
+                                  display: 'Icon Name'
+                                  instructions: 'Heroicon name (e.g., cpu-chip, shield-check, rocket-launch)'
+                                  default: 'star'
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: 'Feature Title'
+                                  validate:
+                                    - required
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Feature Description'
+                                  rows: 2
+                                  validate:
+                                    - required
+                              -
+                                handle: color
+                                field:
+                                  type: select
+                                  display: 'Feature Color'
+                                  options:
+                                    primary: 'Cyan (Primary)'
+                                    blue: 'Blue'
+                                    green: 'Green'
+                                    orange: 'Orange'
+                                    accent: 'Purple (Accent)'
+                                    purple: 'Purple'
+                                    pink: 'Pink'
+                                  default: 'primary'
+                        max_sets: 6
+                    -
+                      handle: image
+                      field:
+                        type: assets
+                        display: 'Section Image'
+                        instructions: 'Optional hero image or diagram'
+                        container: assets
+                        max_files: 1
+                    -
+                      handle: image_position
+                      field:
+                        type: select
+                        display: 'Image Position'
+                        instructions: 'Where to place the image relative to content'
+                        options:
+                          left: 'Left of Content'
+                          right: 'Right of Content'
+                          top: 'Above Content'
+                          background: 'Background Image'
+                        default: 'right'
+                        if:
+                          image: 'not empty'
+                    -
+                      handle: stats
+                      field:
+                        type: replicator
+                        display: 'Key Statistics'
+                        instructions: 'Optional stats or metrics to showcase credibility'
+                        sets:
+                          stat:
+                            display: 'Statistic'
+                            fields:
+                              -
+                                handle: number
+                                field:
+                                  type: text
+                                  display: 'Number/Value'
+                                  instructions: 'e.g., "10x", "90%", "24/7"'
+                                  validate:
+                                    - required
+                              -
+                                handle: label
+                                field:
+                                  type: text
+                                  display: 'Label'
+                                  instructions: 'e.g., "Faster Development", "Cost Savings"'
+                                  validate:
+                                    - required
+                              -
+                                handle: suffix
+                                field:
+                                  type: text
+                                  display: 'Suffix'
+                                  instructions: 'Optional suffix like "%", "x faster", etc.'
+                        max_sets: 4
+                    -
+                      handle: show_cta
+                      field:
+                        type: toggle
+                        display: 'Show Call-to-Action'
+                        default: true
+                    -
+                      handle: cta_text
+                      field:
+                        type: text
+                        display: 'CTA Button Text'
+                        default: 'Discover the Difference'
+                        if:
+                          show_cta: 'equals true'
+                    -
+                      handle: cta_url
+                      field:
+                        type: text
+                        display: 'CTA Button URL'
+                        default: '/about'
+                        if:
+                          show_cta: 'equals true'
                 packages:
                   display: 'Service Packages'
                   icon: briefcase
@@ -352,28 +515,82 @@ tabs:
                         default: 'Our proven methodology for delivering exceptional results'
                         rows: 2
                     -
-                      handle: use_default_steps
-                      field:
-                        type: toggle
-                        display: 'Use Default SMART Steps'
-                        instructions: 'Show the standard S.M.A.R.T process visualization'
-                        default: true
-                    -
-                      handle: steps
+                      handle: default_steps
                       field:
                         type: replicator
-                        display: 'Custom Process Steps'
-                        instructions: 'Add custom detailed process steps (optional, shown below default SMART steps)'
+                        display: 'SMART Process Steps'
+                        instructions: 'Configure the main SMART process steps (shown in circles)'
+                        collapse: false
                         sets:
                           step:
-                            display: 'Step'
+                            display: 'Process Step'
                             fields:
                               -
                                 handle: letter
                                 field:
                                   type: text
                                   display: 'Letter'
-                                  instructions: 'S, M, A, R, T or custom letter'
+                                  instructions: 'Single letter (S, M, A, R, T)'
+                                  character_limit: 1
+                                  validate:
+                                    - required
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: 'Step Title'
+                                  instructions: 'e.g., Strategy, Mockups, Architecture, Results, Track'
+                                  validate:
+                                    - required
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Step Description'
+                                  instructions: 'Brief explanation of this process step'
+                                  rows: 3
+                                  validate:
+                                    - required
+                              -
+                                handle: duration
+                                field:
+                                  type: text
+                                  display: 'Duration'
+                                  instructions: 'e.g., "1-2 weeks", "2-3 weeks", "Ongoing"'
+                                  validate:
+                                    - required
+                              -
+                                handle: color
+                                field:
+                                  type: select
+                                  display: 'Step Color Theme'
+                                  instructions: 'Color theme for this step circle'
+                                  options:
+                                    primary: 'Cyan (Primary)'
+                                    blue: 'Blue'
+                                    green: 'Green'
+                                    orange: 'Orange'
+                                    accent: 'Purple (Accent)'
+                                    purple: 'Purple'
+                                  default: 'primary'
+                        max_sets: 8
+                        min_sets: 1
+                    -
+                      handle: detailed_steps
+                      field:
+                        type: replicator
+                        display: 'Detailed Process Steps'
+                        instructions: 'Optional: Add detailed step cards below the main SMART visualization'
+                        sets:
+                          step:
+                            display: 'Detailed Step'
+                            fields:
+                              -
+                                handle: letter
+                                field:
+                                  type: text
+                                  display: 'Letter/Number'
+                                  instructions: 'Step identifier (S, M, A, R, T, or 1, 2, 3, etc.)'
                                   validate:
                                     - required
                               -
@@ -388,7 +605,7 @@ tabs:
                                 field:
                                   type: textarea
                                   display: 'Step Description'
-                                  rows: 3
+                                  rows: 4
                                   validate:
                                     - required
                               -
@@ -397,19 +614,6 @@ tabs:
                                   type: text
                                   display: 'Duration'
                                   instructions: 'e.g., "1-2 weeks", "Ongoing"'
-                              -
-                                handle: color
-                                field:
-                                  type: select
-                                  display: 'Step Color'
-                                  options:
-                                    primary: 'Primary'
-                                    blue: 'Blue'
-                                    green: 'Green'
-                                    orange: 'Orange'
-                                    accent: 'Accent'
-                                    purple: 'Purple'
-                                  default: 'primary'
                     -
                       handle: show_cta
                       field:

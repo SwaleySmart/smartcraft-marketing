@@ -204,7 +204,10 @@
         class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         ref="scrollIndicatorRef"
       >
-        <div class="relative group cursor-pointer scroll-indicator-container">
+        <div 
+          class="relative group cursor-pointer scroll-indicator-container"
+          @click="scrollToNextSection"
+        >
           <!-- Outer Pulsing Ring -->
           <div class="absolute w-16 h-16 border-2 border-cyan-400/20 rounded-full animate-ping"></div>
           <div class="absolute w-20 h-20 border border-cyan-400/10 rounded-full animate-pulse animation-delay-1s"></div>
@@ -216,15 +219,6 @@
               <!-- Glowing Center Dot -->
               <div class="w-2 h-2 bg-cyan-400 rounded-full m-2.5 animate-pulse shadow-glow-small"></div>
             </div>
-          </div>
-          
-          <!-- Animated Arrow -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <Icon 
-              name="chevron-down" 
-              size="lg" 
-              class="text-cyan-400 group-hover:text-white transition-colors duration-300 animate-bounce drop-shadow-glow" 
-            />
           </div>
           
           <!-- Multiple Scan Lines -->
@@ -366,6 +360,29 @@ const subheadlineClasses = computed(() => [
 
 const playVideo = () => {
   emit('playVideo', props.visualElement)
+}
+
+const scrollToNextSection = () => {
+  // Find the current hero section
+  const heroSection = heroRef.value?.closest('section')
+  if (!heroSection) return
+  
+  // Find the next sibling section
+  let nextSection = heroSection.nextElementSibling
+  
+  // Skip any non-section elements (like script tags, divs, etc.)
+  while (nextSection && nextSection.tagName !== 'SECTION') {
+    nextSection = nextSection.nextElementSibling
+  }
+  
+  if (nextSection) {
+    // Smooth scroll to the next section
+    nextSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest'
+    })
+  }
 }
 
 // GSAP Animations

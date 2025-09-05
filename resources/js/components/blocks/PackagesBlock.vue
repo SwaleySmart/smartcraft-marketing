@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-black relative overflow-hidden py-20 lg:py-32" ref="sectionRef">
+  <section class="bg-black relative overflow-hidden pt-10 pb-20 lg:pt-16 lg:pb-24" ref="sectionRef">
     <!-- Cyber Grid Background -->
     <div class="absolute inset-0 overflow-hidden opacity-10">
       <div class="cyber-grid-packages"></div>

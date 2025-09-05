@@ -15,6 +15,7 @@
 <script setup>
 import { h } from 'vue'
 import HeroBlock from '@/components/blocks/HeroBlock.vue'
+import IntroBlock from '@/components/blocks/IntroBlock.vue'
 import PackagesBlock from '@/components/blocks/PackagesBlock.vue'
 import SmartProcessBlock from '@/components/blocks/SmartProcessBlock.vue'
 
@@ -38,6 +39,7 @@ const FallbackBlock = {
 // Available block components (using static imports for better production reliability)
 const blockComponents = {
   hero: HeroBlock,
+  intro: IntroBlock,
   packages: PackagesBlock,
   smart_process: SmartProcessBlock,
   // Other components will be added as they're created
