@@ -1,0 +1,11 @@
+title: Header
+data:
+  site_name: Smartcraft
+  tagline: 'The AI-Native Anti-Agency'
+  cta_button:
+    enabled: true
+    text: 'Get Started'
+    url: '/contact'
+    style: primary
+  sticky_header: true
+  transparent_header: true

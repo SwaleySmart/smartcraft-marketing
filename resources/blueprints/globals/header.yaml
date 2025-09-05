@@ -1,0 +1,170 @@
+title: Header
+sections:
+  -
+    display: Branding
+    fields:
+      -
+        handle: site_name
+        field:
+          type: text
+          display: 'Site Name'
+          default: 'Smartcraft'
+          validate:
+            - required
+      -
+        handle: logo
+        field:
+          type: assets
+          display: 'Logo'
+          instructions: 'Main logo image'
+          container: assets
+          max_files: 1
+      -
+        handle: logo_dark
+        field:
+          type: assets
+          display: 'Logo (Dark Mode)'
+          instructions: 'Logo for dark mode (optional)'
+          container: assets
+          max_files: 1
+  -
+    display: Navigation
+    fields:
+      -
+        handle: main_navigation
+        field:
+          type: replicator
+          display: 'Main Navigation'
+          instructions: 'Primary navigation menu items'
+          sets:
+            link:
+              display: 'Link'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Link Title'
+                    validate:
+                      - required
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'URL'
+                    instructions: 'Internal path (e.g., /about) or external URL'
+                    validate:
+                      - required
+                -
+                  handle: target
+                  field:
+                    type: select
+                    display: 'Link Target'
+                    options:
+                      _self: 'Same Window'
+                      _blank: 'New Window'
+                    default: '_self'
+            dropdown:
+              display: 'Dropdown Menu'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Menu Title'
+                    validate:
+                      - required
+                -
+                  handle: items
+                  field:
+                    type: replicator
+                    display: 'Dropdown Items'
+                    sets:
+                      link:
+                        display: 'Link'
+                        fields:
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: 'Link Title'
+                              validate:
+                                - required
+                          -
+                            handle: url
+                            field:
+                              type: text
+                              display: 'URL'
+                              validate:
+                                - required
+                          -
+                            handle: description
+                            field:
+                              type: text
+                              display: 'Description'
+                              instructions: 'Optional short description'
+                          -
+                            handle: target
+                            field:
+                              type: select
+                              display: 'Link Target'
+                              options:
+                                _self: 'Same Window'
+                                _blank: 'New Window'
+                              default: '_self'
+      -
+        handle: cta_button
+        field:
+          type: group
+          display: 'Header CTA Button'
+          instructions: 'Primary call-to-action button in header'
+          fields:
+            -
+              handle: enabled
+              field:
+                type: toggle
+                display: 'Show CTA Button'
+                default: true
+            -
+              handle: text
+              field:
+                type: text
+                display: 'Button Text'
+                default: 'Get Started'
+                if:
+                  enabled: 'equals true'
+            -
+              handle: url
+              field:
+                type: text
+                display: 'Button URL'
+                if:
+                  enabled: 'equals true'
+            -
+              handle: style
+              field:
+                type: select
+                display: 'Button Style'
+                options:
+                  primary: 'Primary (Filled)'
+                  secondary: 'Secondary (Outline)'
+                default: 'primary'
+                if:
+                  enabled: 'equals true'
+  -
+    display: Behavior
+    fields:
+      -
+        handle: sticky_header
+        field:
+          type: toggle
+          display: 'Sticky Header'
+          instructions: 'Keep header fixed at top when scrolling'
+          default: true
+      -
+        handle: transparent_header
+        field:
+          type: toggle
+          display: 'Transparent Header'
+          instructions: 'Make header transparent on hero sections'
+          default: false

@@ -1,0 +1,14 @@
+title: Seo
+data:
+  site_title: 'Smartcraft - The AI-Native Anti-Agency'
+  site_description: 'Enterprise-grade websites and software at agency prices. Powered by AI and automation, not WordPress bloat.'
+  site_keywords:
+    - 'web design'
+    - 'web development'
+    - 'software development'
+    - 'web design gloucestershire'
+    - 'software development gloucestershire'
+  organization_name: Smartcraft
+  organization_type: ProfessionalService
+  default_robots: 'index, follow'
+  sitemap_enabled: true

@@ -1,0 +1,292 @@
+title: Footer
+sections:
+  -
+    display: Company Info
+    fields:
+      -
+        handle: company_name
+        field:
+          type: text
+          display: 'Company Name'
+          default: 'Smartcraft'
+          validate:
+            - required
+      -
+        handle: tagline
+        field:
+          type: text
+          display: 'Tagline'
+          default: 'The AI-Native Anti-Agency'
+          instructions: 'Short tagline or slogan'
+      -
+        handle: description
+        field:
+          type: textarea
+          display: 'Company Description'
+          instructions: 'Brief description for footer'
+          rows: 3
+          default: 'Enterprise-grade websites and software at agency prices, powered by AI and automation.'
+      -
+        handle: logo
+        field:
+          type: assets
+          display: 'Footer Logo'
+          instructions: 'Logo for footer (optional, will use header logo if empty)'
+          container: assets
+          max_files: 1
+  -
+    display: Contact Information
+    fields:
+      -
+        handle: email
+        field:
+          type: text
+          display: 'Contact Email'
+          instructions: 'Main contact email address'
+          input_type: email
+      -
+        handle: phone
+        field:
+          type: text
+          display: 'Phone Number'
+          instructions: 'Main contact phone number'
+      -
+        handle: address
+        field:
+          type: textarea
+          display: 'Address'
+          instructions: 'Company address (optional)'
+          rows: 3
+  -
+    display: Footer Navigation
+    fields:
+      -
+        handle: navigation_columns
+        field:
+          type: replicator
+          display: 'Navigation Columns'
+          instructions: 'Organize footer links into columns'
+          sets:
+            column:
+              display: 'Navigation Column'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Column Title'
+                    validate:
+                      - required
+                -
+                  handle: links
+                  field:
+                    type: replicator
+                    display: 'Links'
+                    sets:
+                      link:
+                        display: 'Link'
+                        fields:
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: 'Link Title'
+                              validate:
+                                - required
+                          -
+                            handle: url
+                            field:
+                              type: text
+                              display: 'URL'
+                              validate:
+                                - required
+                          -
+                            handle: target
+                            field:
+                              type: select
+                              display: 'Link Target'
+                              options:
+                                _self: 'Same Window'
+                                _blank: 'New Window'
+                              default: '_self'
+      -
+        handle: quick_links
+        field:
+          type: replicator
+          display: 'Quick Links'
+          instructions: 'Important links shown prominently'
+          sets:
+            link:
+              display: 'Link'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Link Title'
+                    validate:
+                      - required
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'URL'
+                    validate:
+                      - required
+                -
+                  handle: target
+                  field:
+                    type: select
+                    display: 'Link Target'
+                    options:
+                      _self: 'Same Window'
+                      _blank: 'New Window'
+                    default: '_self'
+  -
+    display: Social Media
+    fields:
+      -
+        handle: social_links
+        field:
+          type: replicator
+          display: 'Social Media Links'
+          sets:
+            social:
+              display: 'Social Platform'
+              fields:
+                -
+                  handle: platform
+                  field:
+                    type: select
+                    display: 'Platform'
+                    options:
+                      twitter: 'Twitter/X'
+                      linkedin: 'LinkedIn'
+                      github: 'GitHub'
+                      youtube: 'YouTube'
+                      instagram: 'Instagram'
+                      facebook: 'Facebook'
+                      discord: 'Discord'
+                      custom: 'Custom'
+                    validate:
+                      - required
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'Profile URL'
+                    validate:
+                      - required
+                -
+                  handle: custom_name
+                  field:
+                    type: text
+                    display: 'Custom Platform Name'
+                    if:
+                      platform: 'equals custom'
+                -
+                  handle: custom_icon
+                  field:
+                    type: text
+                    display: 'Custom Icon'
+                    instructions: 'Heroicon name for custom platform'
+                    if:
+                      platform: 'equals custom'
+  -
+    display: Newsletter
+    fields:
+      -
+        handle: newsletter_enabled
+        field:
+          type: toggle
+          display: 'Show Newsletter Signup'
+          default: true
+      -
+        handle: newsletter_title
+        field:
+          type: text
+          display: 'Newsletter Title'
+          default: 'Stay Updated'
+          if:
+            newsletter_enabled: 'equals true'
+      -
+        handle: newsletter_description
+        field:
+          type: textarea
+          display: 'Newsletter Description'
+          default: 'Get insights on AI, marketing, and web development delivered to your inbox.'
+          rows: 2
+          if:
+            newsletter_enabled: 'equals true'
+      -
+        handle: newsletter_form_id
+        field:
+          type: text
+          display: 'Newsletter Form ID'
+          instructions: 'Statamic form handle for newsletter signup'
+          if:
+            newsletter_enabled: 'equals true'
+  -
+    display: Legal & Compliance
+    fields:
+      -
+        handle: copyright_text
+        field:
+          type: text
+          display: 'Copyright Text'
+          default: '© {{ current_year }} {{ site_name }}. All rights reserved.'
+          instructions: 'Use {{ current_year }} and {{ site_name }} for dynamic values'
+      -
+        handle: legal_links
+        field:
+          type: replicator
+          display: 'Legal Links'
+          instructions: 'Privacy policy, terms, etc.'
+          sets:
+            link:
+              display: 'Legal Link'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Link Title'
+                    validate:
+                      - required
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'URL'
+                    validate:
+                      - required
+      -
+        handle: compliance_badges
+        field:
+          type: replicator
+          display: 'Compliance Badges'
+          instructions: 'Security, privacy, or certification badges'
+          sets:
+            badge:
+              display: 'Badge'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: 'Badge Title'
+                    validate:
+                      - required
+                -
+                  handle: image
+                  field:
+                    type: assets
+                    display: 'Badge Image'
+                    container: assets
+                    max_files: 1
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'Link URL'
+                    instructions: 'Optional link for the badge'

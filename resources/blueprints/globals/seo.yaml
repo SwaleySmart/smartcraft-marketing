@@ -1,0 +1,248 @@
+title: SEO
+sections:
+  -
+    display: Site Defaults
+    fields:
+      -
+        handle: site_title
+        field:
+          type: text
+          display: 'Default Site Title'
+          instructions: 'Default title used when pages do not have a meta title'
+          default: 'Smartcraft - The AI-Native Anti-Agency'
+          validate:
+            - required
+      -
+        handle: site_description
+        field:
+          type: textarea
+          display: 'Default Site Description'
+          instructions: 'Default meta description used when pages do not have one'
+          character_limit: 160
+          rows: 3
+          default: 'Enterprise-grade websites and software at agency prices. Powered by AI and automation, not WordPress bloat.'
+          validate:
+            - required
+      -
+        handle: site_keywords
+        field:
+          type: taggable
+          display: 'Default Keywords'
+          instructions: 'Default keywords/tags for the site'
+      -
+        handle: default_og_image
+        field:
+          type: assets
+          display: 'Default Social Share Image'
+          instructions: 'Fallback image for social media sharing (1200x630px recommended)'
+          container: assets
+          max_files: 1
+  -
+    display: Schema & Structured Data
+    fields:
+      -
+        handle: organization_name
+        field:
+          type: text
+          display: 'Organization Name'
+          default: 'Smartcraft'
+          validate:
+            - required
+      -
+        handle: organization_type
+        field:
+          type: select
+          display: 'Organization Type'
+          options:
+            Organization: 'Organization'
+            Corporation: 'Corporation'
+            LocalBusiness: 'Local Business'
+            ProfessionalService: 'Professional Service'
+          default: 'ProfessionalService'
+      -
+        handle: organization_logo
+        field:
+          type: assets
+          display: 'Organization Logo'
+          instructions: 'Logo for structured data (square format recommended)'
+          container: assets
+          max_files: 1
+      -
+        handle: same_as
+        field:
+          type: replicator
+          display: 'Same As Links'
+          instructions: 'Social media profiles and other official pages'
+          sets:
+            url:
+              display: 'URL'
+              fields:
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'URL'
+                    instructions: 'Full URL to social profile or official page'
+                    validate:
+                      - required
+                      - url
+      -
+        handle: contact_info
+        field:
+          type: group
+          display: 'Contact Information'
+          instructions: 'For structured data and local SEO'
+          fields:
+            -
+              handle: telephone
+              field:
+                type: text
+                display: 'Phone Number'
+            -
+              handle: email
+              field:
+                type: text
+                display: 'Email Address'
+                input_type: email
+            -
+              handle: address
+              field:
+                type: group
+                display: 'Address'
+                fields:
+                  -
+                    handle: street_address
+                    field:
+                      type: text
+                      display: 'Street Address'
+                  -
+                    handle: locality
+                    field:
+                      type: text
+                      display: 'City'
+                  -
+                    handle: region
+                    field:
+                      type: text
+                      display: 'State/Region'
+                  -
+                    handle: postal_code
+                    field:
+                      type: text
+                      display: 'Postal Code'
+                  -
+                    handle: country
+                    field:
+                      type: text
+                      display: 'Country'
+  -
+    display: Search Console & Analytics
+    fields:
+      -
+        handle: google_site_verification
+        field:
+          type: text
+          display: 'Google Site Verification'
+          instructions: 'Google Search Console verification code'
+      -
+        handle: bing_site_verification
+        field:
+          type: text
+          display: 'Bing Site Verification'
+          instructions: 'Bing Webmaster Tools verification code'
+      -
+        handle: posthog_api_key
+        field:
+          type: text
+          display: 'PostHog API Key'
+          instructions: 'PostHog project API key for analytics'
+      -
+        handle: posthog_host
+        field:
+          type: text
+          display: 'PostHog Host'
+          instructions: 'PostHog instance URL (leave empty for cloud)'
+          placeholder: 'https://app.posthog.com'
+      -
+        handle: gtm_id
+        field:
+          type: text
+          display: 'Google Tag Manager ID'
+          instructions: 'Optional: GTM container ID (format: GTM-XXXXXXX)'
+          placeholder: 'GTM-XXXXXXX'
+  -
+    display: Robots & Crawling
+    fields:
+      -
+        handle: default_robots
+        field:
+          type: select
+          display: 'Default Robot Instructions'
+          options:
+            'index, follow': 'Index and Follow (Default)'
+            'noindex, follow': 'No Index, Follow Links'
+            'index, nofollow': 'Index, No Follow Links'
+            'noindex, nofollow': 'No Index, No Follow Links'
+          default: 'index, follow'
+      -
+        handle: sitemap_enabled
+        field:
+          type: toggle
+          display: 'Enable XML Sitemap'
+          instructions: 'Generate XML sitemap automatically'
+          default: true
+      -
+        handle: robots_txt_additions
+        field:
+          type: textarea
+          display: 'Robots.txt Additions'
+          instructions: 'Custom rules to add to robots.txt'
+          rows: 5
+          placeholder: |
+            User-agent: *
+            Allow: /
+            
+            Sitemap: {{ site_url }}/sitemap.xml
+  -
+    display: Performance & Technical
+    fields:
+      -
+        handle: preload_fonts
+        field:
+          type: replicator
+          display: 'Preload Fonts'
+          instructions: 'Critical fonts to preload for performance'
+          sets:
+            font:
+              display: 'Font'
+              fields:
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: 'Font URL'
+                    instructions: 'URL to font file (usually .woff2)'
+                    validate:
+                      - required
+                -
+                  handle: type
+                  field:
+                    type: select
+                    display: 'Font Format'
+                    options:
+                      'font/woff2': 'WOFF2'
+                      'font/woff': 'WOFF'
+                      'font/truetype': 'TTF'
+                    default: 'font/woff2'
+      -
+        handle: dns_prefetch
+        field:
+          type: taggable
+          display: 'DNS Prefetch Domains'
+          instructions: 'External domains to prefetch DNS for (e.g., fonts.googleapis.com)'
+      -
+        handle: preconnect_domains
+        field:
+          type: taggable
+          display: 'Preconnect Domains'
+          instructions: 'Critical external domains to preconnect to'

@@ -1,0 +1,675 @@
+title: Pages
+tabs:
+  main:
+    display: Content
+    sections:
+      - 
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              display: Title
+              instructions: 'The page title that appears in browser tabs and search results'
+              validate:
+                - required
+          -
+            handle: slug
+            field:
+              type: slug
+              required: true
+              display: URL Slug
+              instructions: 'The URL-friendly version of the page title'
+              validate:
+                - required
+          -
+            handle: blocks
+            field:
+              type: replicator
+              display: 'Page Builder Blocks'
+              instructions: 'Build your page using content blocks'
+              collapse: false
+              previews: true
+              max_sets: 50
+              sets:
+                hero:
+                  display: 'Hero Section'
+                  icon: layout-grid
+                  instructions: 'Main banner section with headline, subheadline, and CTA'
+                  fields:
+                    -
+                      handle: headline
+                      field:
+                        type: text
+                        display: 'Main Headline'
+                        instructions: 'Primary headline for the hero section'
+                        validate:
+                          - required
+                    -
+                      handle: subheadline
+                      field:
+                        type: textarea
+                        display: 'Subheadline'
+                        instructions: 'Supporting text under the main headline'
+                        rows: 3
+                    -
+                      handle: cta_text
+                      field:
+                        type: text
+                        display: 'CTA Button Text'
+                        instructions: 'Text for the main call-to-action button'
+                        default: 'Get Started'
+                    -
+                      handle: cta_url
+                      field:
+                        type: text
+                        display: 'CTA Button URL'
+                        instructions: 'Where the CTA button links to'
+                    -
+                      handle: background_style
+                      field:
+                        type: select
+                        display: 'Background Style'
+                        options:
+                          gradient: 'Gradient'
+                          image: 'Image'
+                          solid: 'Solid Color'
+                        default: 'gradient'
+                    -
+                      handle: background_image
+                      field:
+                        type: assets
+                        display: 'Background Image'
+                        instructions: 'Optional background image'
+                        container: assets
+                        max_files: 1
+                        if:
+                          background_style: 'equals image'
+                    -
+                      handle: style_variant
+                      field:
+                        type: select
+                        display: 'Style Variant'
+                        options:
+                          standard: 'Standard'
+                          minimal: 'Minimal'
+                          bold: 'Bold'
+                        default: 'standard'
+                packages:
+                  display: 'Service Packages'
+                  icon: briefcase
+                  instructions: 'Display Launch, Growth, and Dominate packages'
+                  fields:
+                    -
+                      handle: section_title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Our Service Packages'
+                        validate:
+                          - required
+                    -
+                      handle: section_subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        instructions: 'Brief description of packages'
+                        rows: 2
+                    -
+                      handle: featured_package
+                      field:
+                        type: select
+                        display: 'Featured Package'
+                        instructions: 'Which package to highlight as most popular'
+                        options:
+                          launch: 'Launch'
+                          growth: 'Growth'
+                          dominate: 'Dominate'
+                        default: 'growth'
+                    -
+                      handle: packages
+                      field:
+                        type: replicator
+                        display: 'Package Details'
+                        instructions: 'Configure each service package'
+                        max_sets: 3
+                        sets:
+                          package:
+                            display: 'Package'
+                            fields:
+                              -
+                                handle: name
+                                field:
+                                  type: text
+                                  display: 'Package Name'
+                                  instructions: 'e.g., Launch, Growth, Dominate'
+                                  validate:
+                                    - required
+                              -
+                                handle: slug
+                                field:
+                                  type: text
+                                  display: 'Package Slug'
+                                  instructions: 'Used for internal reference (e.g., launch, growth, dominate)'
+                                  validate:
+                                    - required
+                              -
+                                handle: price
+                                field:
+                                  type: text
+                                  display: 'Price'
+                                  instructions: 'e.g., £2,500, £5,000, £10,000'
+                                  validate:
+                                    - required
+                              -
+                                handle: price_suffix
+                                field:
+                                  type: text
+                                  display: 'Price Suffix'
+                                  instructions: 'e.g., one-time, per month'
+                                  default: 'one-time'
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Package Description'
+                                  instructions: 'Brief description of what this package is for'
+                                  rows: 2
+                                  validate:
+                                    - required
+                              -
+                                handle: icon
+                                field:
+                                  type: text
+                                  display: 'Icon Name'
+                                  instructions: 'Heroicon name (e.g., rocket-launch, chart-bar, trophy)'
+                                  default: 'briefcase'
+                              -
+                                handle: icon_color
+                                field:
+                                  type: select
+                                  display: 'Icon Color'
+                                  options:
+                                    blue: 'Blue'
+                                    primary: 'Primary'
+                                    green: 'Green'
+                                    orange: 'Orange'
+                                    accent: 'Accent'
+                                    purple: 'Purple'
+                                  default: 'primary'
+                              -
+                                handle: features
+                                field:
+                                  type: list
+                                  display: 'Package Features'
+                                  instructions: 'List of features included in this package'
+                                  add_button: 'Add Feature'
+                    -
+                      handle: show_comparison
+                      field:
+                        type: toggle
+                        display: 'Show Comparison Table'
+                        default: true
+                    -
+                      handle: comparison_features
+                      field:
+                        type: replicator
+                        display: 'Comparison Features'
+                        instructions: 'Features to compare across packages'
+                        if:
+                          show_comparison: 'equals true'
+                        sets:
+                          feature:
+                            display: 'Feature'
+                            fields:
+                              -
+                                handle: name
+                                field:
+                                  type: text
+                                  display: 'Feature Name'
+                                  instructions: 'e.g., Custom Laravel App, E-commerce'
+                                  validate:
+                                    - required
+                              -
+                                handle: launch
+                                field:
+                                  type: text
+                                  display: 'Launch Package'
+                                  instructions: 'Value for Launch package (use "true", "false", or custom text)'
+                                  placeholder: 'true, false, or custom value'
+                              -
+                                handle: growth
+                                field:
+                                  type: text
+                                  display: 'Growth Package'
+                                  instructions: 'Value for Growth package (use "true", "false", or custom text)'
+                                  placeholder: 'true, false, or custom value'
+                              -
+                                handle: dominate
+                                field:
+                                  type: text
+                                  display: 'Dominate Package'
+                                  instructions: 'Value for Dominate package (use "true", "false", or custom text)'
+                                  placeholder: 'true, false, or custom value'
+                    -
+                      handle: cta_text
+                      field:
+                        type: text
+                        display: 'Main CTA Text'
+                        instructions: 'Text for the main call-to-action button below packages'
+                        default: 'Choose Your Package'
+                comparison:
+                  display: 'Comparison Table'
+                  icon: table
+                  instructions: 'Feature comparison table (Smartcraft vs competitors)'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Why Choose Smartcraft?'
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        rows: 2
+                    -
+                      handle: comparison_type
+                      field:
+                        type: select
+                        display: 'Comparison Type'
+                        options:
+                          vs_wordpress: 'vs WordPress Agencies'
+                          vs_traditional: 'vs Traditional Agencies'
+                          vs_competitors: 'vs Specific Competitors'
+                        default: 'vs_wordpress'
+                anti_wp:
+                  display: 'Anti-WordPress Section'
+                  icon: x-circle
+                  instructions: 'Section highlighting problems with WordPress'
+                  fields:
+                    -
+                      handle: headline
+                      field:
+                        type: text
+                        display: 'Headline'
+                        default: 'Why We Dont Use WordPress'
+                    -
+                      handle: problems
+                      field:
+                        type: replicator
+                        display: 'WordPress Problems'
+                        sets:
+                          problem:
+                            display: 'Problem'
+                            fields:
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: 'Problem Title'
+                                  validate:
+                                    - required
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Description'
+                                  rows: 3
+                              -
+                                handle: icon
+                                field:
+                                  type: text
+                                  display: 'Icon Name'
+                                  instructions: 'Heroicon name (e.g., shield-exclamation)'
+                    -
+                      handle: solution_cta
+                      field:
+                        type: text
+                        display: 'Solution CTA'
+                        default: 'See Our Solution'
+                smart_process:
+                  display: 'SMART Process'
+                  icon: cog
+                  instructions: 'Timeline showing the SMART process framework'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'The SMART Process'
+                        validate:
+                          - required
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        default: 'Our proven methodology for delivering exceptional results'
+                        rows: 2
+                    -
+                      handle: use_default_steps
+                      field:
+                        type: toggle
+                        display: 'Use Default SMART Steps'
+                        instructions: 'Show the standard S.M.A.R.T process visualization'
+                        default: true
+                    -
+                      handle: steps
+                      field:
+                        type: replicator
+                        display: 'Custom Process Steps'
+                        instructions: 'Add custom detailed process steps (optional, shown below default SMART steps)'
+                        sets:
+                          step:
+                            display: 'Step'
+                            fields:
+                              -
+                                handle: letter
+                                field:
+                                  type: text
+                                  display: 'Letter'
+                                  instructions: 'S, M, A, R, T or custom letter'
+                                  validate:
+                                    - required
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: 'Step Title'
+                                  validate:
+                                    - required
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Step Description'
+                                  rows: 3
+                                  validate:
+                                    - required
+                              -
+                                handle: duration
+                                field:
+                                  type: text
+                                  display: 'Duration'
+                                  instructions: 'e.g., "1-2 weeks", "Ongoing"'
+                              -
+                                handle: color
+                                field:
+                                  type: select
+                                  display: 'Step Color'
+                                  options:
+                                    primary: 'Primary'
+                                    blue: 'Blue'
+                                    green: 'Green'
+                                    orange: 'Orange'
+                                    accent: 'Accent'
+                                    purple: 'Purple'
+                                  default: 'primary'
+                    -
+                      handle: show_cta
+                      field:
+                        type: toggle
+                        display: 'Show CTA Section'
+                        default: true
+                    -
+                      handle: cta_title
+                      field:
+                        type: text
+                        display: 'CTA Title'
+                        default: 'Ready to Get Started?'
+                        if:
+                          show_cta: 'equals true'
+                    -
+                      handle: cta_subtitle
+                      field:
+                        type: textarea
+                        display: 'CTA Subtitle'
+                        default: 'Let us discuss your project and see how our SMART process can help you achieve your goals.'
+                        rows: 2
+                        if:
+                          show_cta: 'equals true'
+                    -
+                      handle: cta_button_text
+                      field:
+                        type: text
+                        display: 'CTA Button Text'
+                        default: 'Start Your Project'
+                        if:
+                          show_cta: 'equals true'
+                    -
+                      handle: cta_button_url
+                      field:
+                        type: text
+                        display: 'CTA Button URL'
+                        default: '/contact'
+                        if:
+                          show_cta: 'equals true'
+                devops:
+                  display: 'DevOps & Engineering'
+                  icon: server
+                  instructions: 'Technical capabilities and infrastructure'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Enterprise DevOps'
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        rows: 2
+                    -
+                      handle: features
+                      field:
+                        type: replicator
+                        display: 'Technical Features'
+                        sets:
+                          feature:
+                            display: 'Feature'
+                            fields:
+                              -
+                                handle: title
+                                field:
+                                  type: text
+                                  display: 'Feature Title'
+                                  validate:
+                                    - required
+                              -
+                                handle: description
+                                field:
+                                  type: textarea
+                                  display: 'Description'
+                                  rows: 2
+                              -
+                                handle: icon
+                                field:
+                                  type: text
+                                  display: 'Icon Name'
+                analytics:
+                  display: 'Analytics Section'
+                  icon: chart-bar
+                  instructions: 'Analytics and performance tracking (PostHog)'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Data-Driven Decisions'
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        rows: 2
+                    -
+                      handle: show_demo_dashboard
+                      field:
+                        type: toggle
+                        display: 'Show Demo Dashboard'
+                        default: true
+                case_studies:
+                  display: 'Case Studies'
+                  icon: document-text
+                  instructions: 'Client success stories and results'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Success Stories'
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        rows: 2
+                    -
+                      handle: featured_cases
+                      field:
+                        type: replicator
+                        display: 'Featured Case Studies'
+                        sets:
+                          case_study:
+                            display: 'Case Study'
+                            fields:
+                              -
+                                handle: client_name
+                                field:
+                                  type: text
+                                  display: 'Client Name'
+                                  validate:
+                                    - required
+                              -
+                                handle: industry
+                                field:
+                                  type: text
+                                  display: 'Industry'
+                              -
+                                handle: challenge
+                                field:
+                                  type: textarea
+                                  display: 'Challenge'
+                                  rows: 3
+                              -
+                                handle: solution
+                                field:
+                                  type: textarea
+                                  display: 'Solution'
+                                  rows: 3
+                              -
+                                handle: results
+                                field:
+                                  type: replicator
+                                  display: 'Results Metrics'
+                                  sets:
+                                    metric:
+                                      display: 'Metric'
+                                      fields:
+                                        -
+                                          handle: value
+                                          field:
+                                            type: text
+                                            display: 'Value'
+                                            validate:
+                                              - required
+                                        -
+                                          handle: label
+                                          field:
+                                            type: text
+                                            display: 'Label'
+                                            validate:
+                                              - required
+                                        -
+                                          handle: improvement
+                                          field:
+                                            type: text
+                                            display: 'Improvement'
+                                            instructions: 'e.g., "+150%" or "3x faster"'
+                contact:
+                  display: 'Contact/RFP Form'
+                  icon: mail
+                  instructions: 'Contact form or RFP request section'
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: 'Section Title'
+                        default: 'Ready to Get Started?'
+                    -
+                      handle: subtitle
+                      field:
+                        type: textarea
+                        display: 'Section Subtitle'
+                        rows: 2
+                    -
+                      handle: form_type
+                      field:
+                        type: select
+                        display: 'Form Type'
+                        options:
+                          contact: 'Simple Contact'
+                          rfp: 'RFP Request'
+                          estimate: 'Project Estimate'
+                        default: 'contact'
+                    -
+                      handle: show_calendar
+                      field:
+                        type: toggle
+                        display: 'Show Calendar Booking'
+                        default: false
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            handle: meta_title
+            field:
+              type: text
+              display: 'Meta Title'
+              instructions: 'SEO title (leave blank to use page title)'
+              character_limit: 60
+          -
+            handle: meta_description
+            field:
+              type: textarea
+              display: 'Meta Description'
+              instructions: 'SEO description for search results'
+              character_limit: 160
+              rows: 3
+          -
+            handle: og_image
+            field:
+              type: assets
+              display: 'Social Share Image'
+              instructions: 'Image for social media sharing (1200x630px recommended)'
+              container: assets
+              max_files: 1
+          -
+            handle: canonical_url
+            field:
+              type: text
+              display: 'Canonical URL'
+              instructions: 'Optional canonical URL to prevent duplicate content issues'
+          -
+            handle: robots
+            field:
+              type: select
+              display: 'Search Engine Indexing'
+              options:
+                'index, follow': 'Index and Follow (Default)'
+                'noindex, follow': 'No Index, Follow Links'
+                'index, nofollow': 'Index, No Follow Links'
+                'noindex, nofollow': 'No Index, No Follow Links'
+              default: 'index, follow'

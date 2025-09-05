@@ -1,0 +1,34 @@
+title: 'Main Navigation'
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Title
+      required: true
+      validate:
+        - required
+  -
+    handle: url
+    field:
+      type: text
+      display: URL
+      instructions: 'Enter a URL, entry URI, or use # for dropdown parents'
+      validate:
+        - required
+  -
+    handle: target
+    field:
+      type: select
+      display: Target
+      instructions: 'How should the link open?'
+      options:
+        _self: 'Same Window'
+        _blank: 'New Window'
+      default: _self
+  -
+    handle: description
+    field:
+      type: text
+      display: Description
+      instructions: 'Optional description for dropdown items'
