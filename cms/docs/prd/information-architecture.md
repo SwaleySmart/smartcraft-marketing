@@ -1,0 +1,11 @@
+# Information Architecture (Draft)
+
+* **Home** (hero, packages, proof, anti-WordPress, SMART, CTA)
+* **Packages** (Launch/Growth/Dominate, Add-ons, comparison)
+* **Services** (Engineering, SEO, PPC, Social, Analytics, DevOps)
+* **Process** (SMART)
+* **Case Studies** (before/after, metrics, stack)
+* **Insights** (blog, playbooks, changelog)
+* **About** (anti-agency stance, founder)
+* **Contact** (RFP form, scheduler)
+* **Status** (uptime/incidents – optional)
